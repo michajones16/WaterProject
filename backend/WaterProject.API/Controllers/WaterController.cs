@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WaterProject.API.Data;
 
 namespace WaterProject.API.Controllers
@@ -12,18 +13,42 @@ namespace WaterProject.API.Controllers
         public WaterController(WaterDbContext temp) => _waterContext = temp;
 
         [HttpGet("AllProjects")]
-        public IEnumerable<Project> Get()
+        public IActionResult GetProjects(int pageSize = 10, int pageNum = 1, [FromQuery] List<string>? ProjectTypes = null)
         {
-            var projects = _waterContext.Projects.ToList();
+            var query = _waterContext.Projects.AsQueryable();
 
-            return projects;
+            if (ProjectTypes != null && ProjectTypes.Any())
+            {
+                query = query.Where(p => ProjectTypes.Contains(p.ProjectType));
+            }
+
+            var totalNumProjects = query.Count();
+
+            var projects = query
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var numProjects = _waterContext.Projects.Count();
+
+            var someObject = new
+            {
+                Projects = projects,
+                NumProjects = numProjects
+            };
+
+            return Ok(someObject);
         }
 
-        [HttpGet("FunctionalProjects")]
-        public IEnumerable<Project> GetFunctionalProjects()
+        [HttpGet("GetProjectTypes")]
+        public IActionResult GetProjectTypes()
         {
-            var projects = _waterContext.Projects.Where(x => x.ProjectFunctionalityStatus == "Functional").ToList();
-            return projects;
+            var projectTypes = _waterContext.Projects
+                .Select(p => p.ProjectType)
+                .Distinct()
+                .ToList();
+
+            return Ok(projectTypes);
         }
     }
 }
