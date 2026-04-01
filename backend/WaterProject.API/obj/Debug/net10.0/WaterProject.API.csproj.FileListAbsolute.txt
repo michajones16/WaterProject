@@ -64,3 +64,4 @@ C:\Users\byufa\OneDrive - Brigham Young University\IS Junior Core\413\WaterProje
 C:\Users\byufa\OneDrive - Brigham Young University\IS Junior Core\413\WaterProject\backend\WaterProject.API\obj\Debug\net10.0\WaterProject.API.genruntimeconfig.cache
 C:\Users\byufa\OneDrive - Brigham Young University\IS Junior Core\413\WaterProject\backend\WaterProject.API\obj\Debug\net10.0\ref\WaterProject.API.dll
 C:\Users\byufa\OneDrive - Brigham Young University\IS Junior Core\413\WaterProject\backend\WaterProject.API\obj\Debug\net10.0\WaterProject.API.sourcelink.json
+C:\Users\byufa\OneDrive - Brigham Young University\IS Junior Core\413\WaterProject\backend\WaterProject.API\bin\Debug\net10.0\WaterProject.sqlite
