@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/f9bb3375-959a-4be0-a7e5-93916970f7e7/resourceGroups/appsvc_windows_eastus/providers/Microsoft.Web/sites/WaterProject-Jones-Backend",
+    "appService.deploySubpath": "backend\\WaterProject.API\\publish"
+}
